@@ -1,53 +1,77 @@
-
-<html>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-<script type="text/javascript" src="/resources/bootstrap-3.3.6-dist/js/bootstrap-3.3.6-dist.min.js"></script>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-
+<title>jewelleryCart</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"
+	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script
+	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<style>
+body {
+	background-color: #D3D3D3;
+}
+</style>
 </head>
 <body>
-<nav class="navbar navbar-inverse navbar-fixed-top">
+	<div>
+		<h1>
+			<center>Jewellery Cart</center>
+		</h1>
+	</div>
+	<br>
+	<br>
+<body id="myPage" data-spy="scroll" data-target=".navbar"
+	data-offset="60">
 
-  <div class="container-fluid">
-    <div class="navbar-header">
-    
-      <a class="navbar-brand" >MOBILE ZONE</a>
-    </div>
-    
-    <ul class="nav navbar-nav">
- 
-      <li class="dropdown">
-        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Category
-        <span class="caret"></span></a>
-        <ul class="dropdown-menu">
-          <li><a href="#">SAMSUNG</a></li>
-      <li><a href="#">iPHONE</a></li> 
-      <li><a href="#">SONY</a></li> 
-       <li><a href="#">HTC</a></li> 
-        <li><a href="#">MICROMAX</a></li> 
-        </ul>
-      </li>
-    
-    
-    
-    
-   
-   
-    <ul class="nav navbar-nav navbar-corner">
-     <li><a href="Home"><span class="glyphicon glyphicon-home"></span> Home</a></li>
-    
-      <li><a href="Registration"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-      <li><a href="TestLogin"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-      <li><a href="Mycart"><span class="glyphicon glyphicon-mycart"></span>My cart</a></li>
-     
-     
- </ul>
-  </div>
-</nav>
+	<nav class="navbar navbar-inverse">
+
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand"> <span
+					class="glyphicon glyphicon-jewellery"></span>JewelleryCart
+				</a>
+			</div>
+			<ul class="nav navbar-nav">
+				<li class="active"><a href="Home"><span
+						class="glyphicon glyphicon-home"></span>Home</a></li>
+				<li class="dropdown"><a class="dropdown-toggle"
+					data-toggle="dropdown" href="#"> Category <span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="Category">Gold</a></li>
+						<li><a href="Category">Diamond</a></li>
+						<li><a href="Category">Silver</a></li>
 
 
-     
-   
+					</ul></li>
+					</ul>
+				<ul class="nav navbar-nav">
+					<li><a href="Admin"><span
+							class="glyphicon glyphicon-pencil"></span>Admin</a> </li>
+							</u1>
+
+
+
+
+			<ul class="nav navbar-nav navbar-right">		
+
+
+						<li><a href="Registration"><span
+								class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+						<li><a href="Login"><span
+								class="glyphicon glyphicon-log-in"></span> Login</a></li>
+				</ul>	
+		</div>
+		
+	</nav>
+
+
+
+
 </body>
+</html>
+

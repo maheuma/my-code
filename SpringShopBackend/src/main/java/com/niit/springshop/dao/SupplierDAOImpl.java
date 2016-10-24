@@ -9,11 +9,12 @@ package com.niit.springshop.dao;
 		import org.springframework.stereotype.Repository;
 		import org.springframework.transaction.annotation.Transactional;
 
-		import com.niit.springshop.model.Supplier;
+import com.niit.springshop.model.Category;
+import com.niit.springshop.model.Supplier;
 
 		@Repository("supplierDAO")
 
-		public class SupplierDAOImpl implements SupplierDAO {
+		public class SupplierDAOImpl implements SupplierDAO{
 			
 			
 			@Autowired
@@ -34,22 +35,19 @@ package com.niit.springshop.dao;
 			
 			@Transactional
 			
-			public void delete(String id)
+			public void delete(int id)
 			{
 				Supplier SupplierToDelete = new Supplier();
 				SupplierToDelete.setId(id);
 				sessionFactory.getCurrentSession().delete(SupplierToDelete);
 			}
-			private CategoryDAOImpl currentSession() {
-				// TODO Auto-generated method stub
-				return null;
-			}
+			
 
 			@Transactional
-			public Supplier get(String id)
+			public Supplier get(int id)
 			
 			{
-				String hql = "from Supplier where id=" +"'"+id+"'"+"'";
+				String hql = "from Supplier where id=" +"'"+id+"'";
 			Query query = sessionFactory.getCurrentSession().createQuery(hql);
 			List<Supplier> listSupplier=query.list();
 			
@@ -58,6 +56,21 @@ package com.niit.springshop.dao;
 				return listSupplier.get(0);
 			}
 			return null;
+			}
+			@Transactional
+			public Supplier getByName(String name)
+			{
+				String hql = "from Supplier where name=" +"'"+name+"'";
+				Query query = sessionFactory.getCurrentSession().createQuery(hql);
+				@SuppressWarnings("unchecked")
+				List<Supplier> listSupplier=query.list();
+				
+				if(listSupplier !=null && !listSupplier.isEmpty())
+				{
+					return listSupplier.get(0);
+				}
+				return null;
+				
 			}
 			@Transactional
 			public List<Supplier> list()
@@ -70,6 +83,8 @@ package com.niit.springshop.dao;
 				
 				
 			}
+
+		
 			
 		}
 

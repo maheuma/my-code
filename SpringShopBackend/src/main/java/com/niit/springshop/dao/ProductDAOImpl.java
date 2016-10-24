@@ -8,11 +8,11 @@ import java.util.List;
 	import org.springframework.stereotype.Repository;
 	import org.springframework.transaction.annotation.Transactional;
 
-	import com.niit.springshop.model.Product;
+import com.niit.springshop.model.Product;
 
 	@Repository("productDAO")
 
-	public class ProductDAOImpl implements ProductDAO{
+	public class ProductDAOImpl  implements ProductDAO{
 		
 		@Autowired
 		
@@ -32,22 +32,20 @@ import java.util.List;
 		
 		@Transactional
 		
-		public void delete(String id)
+		public void delete(int id)
 		{
 			Product ProductToDelete = new Product();
 			ProductToDelete.setId(id);
 			sessionFactory.getCurrentSession().delete(ProductToDelete);
 		}
-		private CategoryDAOImpl currentSession() {
-			// TODO Auto-generated method stub
-			return null;
-		}
+		
 
+		@SuppressWarnings("unchecked")
 		@Transactional
-		public Product get(String id)
+		public Product get(int id)
 		
 		{
-			String hql = "from Product where id=" +"'"+id+"'"+"'";
+			String hql = "from Product where id=" +"'"+id+"'";
 		Query query = sessionFactory.getCurrentSession().createQuery(hql);
 		List<Product> listProduct=query.list();
 		
@@ -56,6 +54,35 @@ import java.util.List;
 			return listProduct.get(0);
 		}
 		return null;
+		}
+		@Transactional
+		public List <Product> getByCategory(int id)
+		{
+			String hql="from Product where cat_id ="+"'"+id+"'";
+			Query query=sessionFactory.getCurrentSession().createQuery(hql);
+			@SuppressWarnings("unchecked")
+			List<Product>listProduct= query.list();
+			if(listProduct!=null && !listProduct.isEmpty()){
+				return listProduct;
+						}
+			return null;
+			
+			
+		}
+		
+		@Transactional
+		public List <Product> getByProduct(int id)
+		{
+			String hql="from Product where id ="+"'"+id+"'";
+			Query query=sessionFactory.getCurrentSession().createQuery(hql);
+			@SuppressWarnings("unchecked")
+			List<Product>listProduct= query.list();
+			if(listProduct!=null && !listProduct.isEmpty()){
+				return listProduct;
+						}
+			return null;
+			
+			
 		}
 		@Transactional
 		public List<Product> list()

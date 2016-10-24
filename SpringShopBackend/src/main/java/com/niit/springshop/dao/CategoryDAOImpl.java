@@ -32,22 +32,20 @@ private SessionFactory sessionFactory;
 	
 	@Transactional
 	
-	public void delete(String id)
+	public void delete(int id)
 	{
 		Category CategoryToDelete = new Category();
 		CategoryToDelete.setId(id);
 		sessionFactory.getCurrentSession().delete(CategoryToDelete);
 	}
-	private CategoryDAOImpl currentSession() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 
+	@SuppressWarnings("unchecked")
 	@Transactional
-	public Category get(String id)
+	public Category get(int id)
 	
 	{
-		String hql = "from Category where id=" +"'"+id+"'"+"'";
+		String hql = "from Category where id=" +"'"+id+"'";
 	Query query = sessionFactory.getCurrentSession().createQuery(hql);
 	List<Category> listCategory=query.list();
 	
@@ -57,6 +55,22 @@ private SessionFactory sessionFactory;
 	}
 	return null;
 	}
+	@Transactional
+	public Category getByName(String name)
+	{
+		String hql = "from Category where name=" +"'"+name+"'";
+		Query query = sessionFactory.getCurrentSession().createQuery(hql);
+		@SuppressWarnings("unchecked")
+		List<Category> listCategory=query.list();
+		
+		if(listCategory !=null && !listCategory.isEmpty())
+		{
+			return listCategory.get(0);
+		}
+		return null;
+		
+	}
+	
 	@Transactional
 	public List<Category> list()
 	{System.out.println("in the list creation");

@@ -14,6 +14,10 @@ import org.springframework.orm.hibernate4.HibernateTransactionManager;
 import org.springframework.orm.hibernate4.LocalSessionFactoryBuilder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import com.niit.springshop.dao.BuyDAO;
+import com.niit.springshop.dao.BuyDAOimp;
+import com.niit.springshop.dao.CartDAO;
+import com.niit.springshop.dao.CartDAOimp;
 import com.niit.springshop.dao.CategoryDAO;
 import com.niit.springshop.dao.CategoryDAOImpl;
 import com.niit.springshop.dao.ProductDAO;
@@ -22,6 +26,8 @@ import com.niit.springshop.dao.SupplierDAO;
 import com.niit.springshop.dao.SupplierDAOImpl;
 import com.niit.springshop.dao.UserDAO;
 import com.niit.springshop.dao.UserDAOImpl;
+import com.niit.springshop.model.Buy;
+import com.niit.springshop.model.Cart;
 import com.niit.springshop.model.Category;
 import com.niit.springshop.model.Product;
 import com.niit.springshop.model.Supplier;
@@ -35,18 +41,18 @@ import com.niit.springshop.model.User;
 public class ApplicationContextConfig {
 
   
-@Bean(name = "dataSource")
-public DataSource getDataSource() {
-	System.out.println("data source");
-DriverManagerDataSource dataSource = new DriverManagerDataSource();
-dataSource.setDriverClassName("org.h2.Driver");
-dataSource.setUrl("jdbc:h2:tcp://localhost/~/test");
-System.out.println("inside getdata source");
-dataSource.setUsername("sa");
-dataSource.setPassword("sa");
-return dataSource;
-}
-    
+	@Bean(name = "dataSource")
+	public DataSource getDataSource() {
+		System.out.println("data source");
+	DriverManagerDataSource dataSource = new DriverManagerDataSource();
+	dataSource.setDriverClassName("org.h2.Driver");
+	dataSource.setUrl("jdbc:h2:tcp://localhost/~/test");
+	System.out.println("inside getdata source");
+	dataSource.setUsername("sa");
+	dataSource.setPassword("sa");
+	return dataSource;
+	}
+	    
    
     
     private Properties getHibernateProperties() {
@@ -68,6 +74,8 @@ return dataSource;
     sessionBuilder.addAnnotatedClass(Supplier.class);
     sessionBuilder.addAnnotatedClass(Product.class);
     sessionBuilder.addAnnotatedClass(User.class);
+    sessionBuilder.addAnnotatedClass(Cart.class);
+    sessionBuilder.addAnnotatedClass(Buy.class);
     
     
       return sessionBuilder.buildSessionFactory();
@@ -115,6 +123,20 @@ return new ProductDAOImpl(sessionFactory);
  public UserDAO getUserDao(SessionFactory sessionFactory) {
  
 return new UserDAOImpl(sessionFactory);
+ 
+ }
+ @Autowired
+ @Bean(name = "cartDAO")
+ public CartDAO getCartDao(SessionFactory sessionFactory) {
+ 
+return new CartDAOimp(sessionFactory);
+ 
+ }
+ @Autowired
+ @Bean(name = "buyDAO")
+ public BuyDAO getBuyDao(SessionFactory sessionFactory) {
+ 
+return new BuyDAOimp(sessionFactory);
  
  }
 }
